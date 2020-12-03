@@ -30,30 +30,53 @@ class LinkedList {
   }
 
   insertBefore(newItem, item) {
-    let prevNode = '???';
-    let nextNode = prevNode.next;
-    if (item === this.head) {
+    // Start at the head
+    let currNode = this.head;
+    // Keep track of previous
+    if (!this.head) {
       this.insertFirst(newItem);
-    } else {
-      while (newItem.value !== item) {
-        if (currNode.next === null) {
-          return null;
-        } else {
-          currNode = currNode.next;
-        }
-        return currNode;
+    }
+    while (currNode.next.value !== item) {
+      if (currNode.next.value === null) {
+        return null;
+      } else {
+        currNode = currNode.next;
       }
     }
+    currNode.next = new _Node(newItem, currNode.next);
+  }
 
-    // set variable for prev node ( let currentNode = this.find(item))
-    // if statement
-    // traverse to the current 'item'
-    // create a new node given the 'newItem'
-    // insert the 'newItem' before the 'item'
-    // change the pointer of the previous node
-    // to point to the new one
-    // change the pointer of the new node to point to
-    // the next one
+  insertAfter(newItem, item) {
+    let currNode = this.head;
+    if (!this.head) {
+      this.insertFirst(newItem);
+    }
+
+    while (currNode.value !== item) {
+      if (currNode.next === null) {
+        return null;
+      } else {
+        currNode = currNode.next;
+      }
+    }
+    currNode.next = new _Node(newItem, currNode.next);
+  }
+
+  insertAt(item, pos) {
+    let i = 0;
+    let currNode = this.head;
+
+    if (pos === 0) {
+      this.insertFirst(item);
+    }
+    if (!this.head) {
+      return null;
+    }
+    while (i < pos) {
+      currNode = currNode.next;
+      i++;
+    }
+    this.insertBefore(item, currNode.value);
   }
 
   find(item) {
