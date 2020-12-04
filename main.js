@@ -23,9 +23,29 @@ function main() {
   // isEmpty(SSL)
   // display(SSL)
   // findLast(SSL)
-  display(SSL)
-  WhatDoesThisProgramDo(SSL)
-  display(SSL)
+  // size(SSL)
+  // display(SSL)
+  // fromEnd(SSL, 3)
+  //display(SSL)
+  //WhatDoesThisProgramDo(SSL)
+  //middleOfList(SSL)
+
+
+
+  const CycleList = new LinkedList();
+
+  CycleList.insertFirst('Apollo');
+  CycleList.insertLast('Boomer');
+  CycleList.insertLast('Helo');
+  CycleList.insertLast('Helo');
+  CycleList.insertLast('Husker');
+  CycleList.insertLast('Apollo');
+  CycleList.insertLast('Starbuck');
+  CycleList.insertLast('Tauhida');
+
+
+
+  console.log(cycleList(CycleList))
 }
 
 // display: displays the linked list
@@ -38,9 +58,10 @@ function display(list) {
   while (currNode.next !== null) {
 
     values += currNode.value + ' ';
-    currNode = currNode.next;
+    currNode = list.head;
   }
   values += currNode.value;
+  cycleList(list)
   console.log(values);
 
 }
@@ -57,7 +78,7 @@ function size(list) {
     count++;
     currNode = currNode.next;
   }
-  return console.log(count);
+  return count;
 }
 
 // checks if list is empty
@@ -103,6 +124,53 @@ function WhatDoesThisProgramDo(lst) {
     }
     current = current.next;
   }
+}
+
+function fromEnd(list, num) {
+  let currNode = list.head;
+  let i = 0;
+  let count = (size(list) - num)
+
+  while (i < count) {
+    currNode = currNode.next;
+    i++;
+  }
+  console.log(currNode.value);
+}
+
+function middleOfList(list) {
+  let currNode = list.head;
+  let i = 0;
+  let count = Math.floor(size(list) / 2);
+  while (i < count) {
+    currNode = currNode.next;
+    i++;
+  }
+  return console.log(currNode.value)
+}
+
+function cyclecList(list) {
+  let currNode = list.head;
+  let map = {};
+  while (currNode) {
+
+  }
+}
+
+function cycleList(list) {
+  let current = list.head;
+  while (current !== null) {
+    let listItem = current;
+    while (listItem.next !== null) {
+      if (current === listItem.next) {
+        return true;
+      } else {
+        listItem = listItem.next;
+      }
+    }
+    current = current.next;
+  }
+  return false
 }
 
 main();
